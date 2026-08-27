@@ -16,23 +16,63 @@ export const FooterSection: React.FC = () => {
   });
   const [submitted, setSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSending(true);
+    setErrorMessage(null);
 
-    setTimeout(() => {
+    try {
+      // Direct dispatch to janithramoramudali@gmail.com via FormSubmit API
+      const response = await fetch(`https://formsubmit.co/ajax/${profileData.email}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          _subject: `[PORTFOLIO DISPATCH] ${formData.subject} from ${formData.name}`,
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+
+      if (response.ok) {
+        setIsSending(false);
+        setSubmitted(true);
+        confetti({
+          particleCount: 60,
+          spread: 70,
+          origin: { y: 0.8 },
+          colors: ['#38bdf8', '#0284c7', '#ffffff'],
+        });
+      } else {
+        throw new Error('API dispatch failed');
+      }
+    } catch (err) {
+      console.warn('Network dispatch error, falling back to mailto client:', err);
+      // Fallback: Open mailto client directly with pre-filled details
+      const mailtoUrl = `mailto:${profileData.email}?subject=${encodeURIComponent(
+        `[PORTFOLIO] ${formData.subject} - ${formData.name}`
+      )}&body=${encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\nSubject: ${formData.subject}\n\nMessage:\n${formData.message}`
+      )}`;
+      window.location.href = mailtoUrl;
+
       setIsSending(false);
       setSubmitted(true);
-      
-      // Fire subtle celebratory confetti
       confetti({
-        particleCount: 50,
-        spread: 60,
+        particleCount: 40,
+        spread: 50,
         origin: { y: 0.8 },
         colors: ['#38bdf8', '#0284c7', '#ffffff'],
       });
-    }, 600);
+    }
   };
 
   const scrollToTop = () => {
@@ -85,15 +125,19 @@ export const FooterSection: React.FC = () => {
                       <CheckCircle className="w-6 h-6" />
                     </div>
                     <h3 className="font-sans font-bold text-2xl text-[var(--text-primary)]">
-                      Transmission Received
+                      Transmission Dispatched
                     </h3>
-                    <p className="font-mono text-xs text-[var(--text-tertiary)] max-w-sm">
-                      Thank you for reaching out, {formData.name || 'there'}. I have logged your transmission and will respond promptly via email.
+                    <p className="font-mono text-xs text-[var(--text-tertiary)] max-w-md">
+                      Thank you for reaching out, {formData.name || 'there'}! Your message has been routed and dispatched directly to <strong className="text-[var(--accent-primary)]">{profileData.email}</strong>. I will review your transmission and respond promptly.
                     </p>
                     <button
-                      onClick={() => setSubmitted(false)}
-                      className="mt-4 px-4 py-2 font-mono text-xs border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-colors text-[var(--accent-primary)]"
+                      onClick={() => {
+                        setSubmitted(false);
+                        setFormData({ name: '', email: '', subject: 'Full-Stack Web Project', message: '' });
+                      }}
+                      className="mt-4 px-4 py-2 font-mono text-xs border border-[var(--border-primary)] hover:border-[var(--accent-primary)] transition-colors text-[var(--accent-primary)] relative"
                     >
+                      <CornerBracket size={4} />
                       TRANSMIT ANOTHER MESSAGE
                     </button>
                   </div>
@@ -141,10 +185,10 @@ export const FooterSection: React.FC = () => {
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         className="w-full px-3 py-2.5 bg-[var(--background-tertiary)] border border-[var(--border-primary)] text-sm font-sans text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-primary)] transition-colors"
                       >
-                        <option value="Full-Stack Web Project">Full-Stack Web &amp; Application Development</option>
-                        <option value="Backend Architecture">Cloud Infrastructure &amp; API Systems</option>
-                        <option value="Creative UI/UX">Creative WebGL &amp; Frontend Experience</option>
-                        <option value="Consulting / Performance">Performance Audit &amp; Optimization</option>
+                        <option value="Full-Stack Web Project">Full-Stack Web &amp; Application Development (React)</option>
+                        <option value="Mobile App Development">Mobile Application Engineering (React Native)</option>
+                        <option value="AI Forensics & Stego">AI Steganography Detection (Cybervali)</option>
+                        <option value="n8n Workflow Automation">Workflow Automation &amp; Pipelines (n8n)</option>
                         <option value="Full-Time Engineering Role">Full-Time Engineering Opportunity</option>
                       </select>
                     </div>
@@ -164,15 +208,31 @@ export const FooterSection: React.FC = () => {
                       />
                     </div>
 
+                    {/* Direct routing telemetry note */}
+                    <div className="flex items-center justify-between text-[11px] font-mono text-[var(--text-quaternary)]">
+                      <span className="flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        DESTINATION: {profileData.email}
+                      </span>
+                      <a
+                        href={`mailto:${profileData.email}?subject=${encodeURIComponent(
+                          `[INQUIRY] ${formData.subject || 'Project Inquiry'}`
+                        )}`}
+                        className="hover:text-[var(--accent-primary)] transition-colors underline underline-offset-2"
+                      >
+                        OPEN IN CLIENT
+                      </a>
+                    </div>
+
                     {/* Submit button */}
                     <button
                       type="submit"
                       disabled={isSending}
-                      className="w-full py-3 px-6 border border-[var(--border-primary)] bg-[var(--accent-primary)] text-white hover:bg-[var(--accent-hover)] font-mono text-xs font-bold tracking-widest uppercase transition-all flex items-center justify-center gap-2 relative group disabled:opacity-50"
+                      className="w-full py-3 px-6 border border-[var(--border-primary)] bg-[var(--accent-primary)] text-white hover:bg-[var(--accent-hover)] font-mono text-xs font-bold tracking-widest uppercase transition-all flex items-center justify-center gap-2 relative group disabled:opacity-50 cursor-pointer"
                     >
                       <CornerBracket size={5} />
                       {isSending ? (
-                        <span>ENCRYPTING &amp; DISPATCHING...</span>
+                        <span>TRANSMITTING TO {profileData.email.toUpperCase()}...</span>
                       ) : (
                         <>
                           <span>TRANSMIT DISPATCH</span>
