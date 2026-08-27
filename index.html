@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-visual" />
+    <title>Chamindu Moramudali | Software Engineer &amp; Creative Developer</title>
+    <meta name="description" content="Portfolio of Chamindu Moramudali. Full-stack software engineering, scalable distributed systems, and precision high-performance web development." />
+    <meta name="keywords" content="Chamindu Moramudali, Software Engineer, Creative Developer, Web Developer, IIT, Informatics Institute of Technology, University of Westminster, Sri Lanka, Portfolio" />
+    <meta name="author" content="Chamindu Moramudali" />
+    
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <script>
+      // Initialize theme early to avoid flash of incorrect theme
+      (function() {
+        try {
+          var saved = localStorage.getItem('app-theme');
+          if (saved === 'light' || saved === 'dark') {
+            document.documentElement.setAttribute('data-theme', saved);
+          } else {
+            var h = new Date().getHours();
+            var t = (h >= 6 && h < 18) ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="antialiased font-sans bg-background-primary text-text-primary selection:bg-accent-primary selection:text-white min-h-screen overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

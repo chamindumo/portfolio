@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Dynamic Grid Metrics (Updated via useGridMetrics hook) */
+  --grid-block-size: 54px;
+  --grid-section-columns: 16;
+  --grid-max-width: 1400px;
+  --header-height: 54px;
+  
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: "Montserrat", system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Carbon Dark Theme (Default) */
+[data-theme="dark"] {
+  --background-primary: #121214;
+  --background-secondary: rgba(255, 255, 255, 0.035);
+  --background-tertiary: #19191d;
+  --background-card: rgba(26, 26, 31, 0.85);
+  --background-inverse: #fafafa;
+  --text-primary: #f4f4f5;
+  --text-secondary: #d4d4d8;
+  --text-tertiary: #a1a1aa;
+  --text-quaternary: #71717a;
+  --text-inverse: #121214;
+  --border-primary: #2b2b32;
+  --border-secondary: #212127;
+  --accent-primary: #38bdf8;
+  --accent-hover: #7dd3fc;
+  --grid-line-color: rgba(255, 255, 255, 0.065);
+  --crosshair-color: rgba(255, 255, 255, 0.18);
+  --corner-color: #38bdf8;
+  --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+}
+
+/* Architectural Light Theme */
+[data-theme="light"] {
+  --background-primary: #f8f9fa;
+  --background-secondary: rgba(0, 0, 0, 0.035);
+  --background-tertiary: #eaecef;
+  --background-card: rgba(255, 255, 255, 0.9);
+  --background-inverse: #121214;
+  --text-primary: #18181b;
+  --text-secondary: #27272a;
+  --text-tertiary: #52525b;
+  --text-quaternary: #71717a;
+  --text-inverse: #fafafa;
+  --border-primary: #d4d4d8;
+  --border-secondary: #e4e4e7;
+  --accent-primary: #0284c7;
+  --accent-hover: #0369a1;
+  --grid-line-color: rgba(0, 0, 0, 0.075);
+  --crosshair-color: rgba(0, 0, 0, 0.22);
+  --corner-color: #0284c7;
+  --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
+}
+
+/* Background Blueprint Grid */
+.blueprint-grid-bg {
+  background-size: var(--grid-block-size) var(--grid-block-size);
+  background-image: 
+    linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
+}
+
+/* Precision CAD Corner Brackets */
+.corner-bracket-container {
+  position: relative;
+}
+
+.corner-tl, .corner-tr, .corner-bl, .corner-br {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  z-index: 5;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.corner-tl {
+  top: -1px;
+  left: -1px;
+  border-top: 1.5px solid var(--corner-color);
+  border-left: 1.5px solid var(--corner-color);
+}
+
+.corner-tr {
+  top: -1px;
+  right: -1px;
+  border-top: 1.5px solid var(--corner-color);
+  border-right: 1.5px solid var(--corner-color);
+}
+
+.corner-bl {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 1.5px solid var(--corner-color);
+  border-left: 1.5px solid var(--corner-color);
+}
+
+.corner-br {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1.5px solid var(--corner-color);
+  border-right: 1.5px solid var(--corner-color);
+}
+
+/* Scroll reveal corner snap animation */
+.scroll-hidden .corner-tl {
+  transform: translate(6px, 6px);
+  opacity: 0;
+}
+.scroll-hidden .corner-tr {
+  transform: translate(-6px, 6px);
+  opacity: 0;
+}
+.scroll-hidden .corner-bl {
+  transform: translate(6px, -6px);
+  opacity: 0;
+}
+.scroll-hidden .corner-br {
+  transform: translate(-6px, -6px);
+  opacity: 0;
+}
+
+.scroll-revealed .corner-tl,
+.scroll-revealed .corner-tr,
+.scroll-revealed .corner-bl,
+.scroll-revealed .corner-br {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+
+/* Hover expansion for interactive CAD containers */
+.corner-hover-expand:hover .corner-tl {
+  transform: translate(-2px, -2px);
+}
+.corner-hover-expand:hover .corner-tr {
+  transform: translate(2px, -2px);
+}
+.corner-hover-expand:hover .corner-bl {
+  transform: translate(-2px, 2px);
+}
+.corner-hover-expand:hover .corner-br {
+  transform: translate(2px, 2px);
+}
+
+/* Ruler Ticks */
+.ruler-tick {
+  position: relative;
+}
+.ruler-tick::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 6px;
+  background-color: var(--border-primary);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-primary);
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Text Selection */
+::selection {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+}
+
+/* Monospace number alignment */
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Smooth transition for theme switches */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Sub-pixel smooth font rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
