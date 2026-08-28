@@ -205,3 +205,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Precision Aerospace CAD Cursor (Active on desktop pointers) */
+@media (hover: hover) and (pointer: fine) {
+  body, a, button, input, textarea, select, [role="button"], .cursor-pointer {
+    cursor: none !important;
+  }
+}

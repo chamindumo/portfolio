@@ -12,6 +12,7 @@ import { ServicesSection } from './components/sections/ServicesSection';
 import { MetricsSection } from './components/sections/MetricsSection';
 import { AboutSection } from './components/sections/AboutSection';
 import { FooterSection } from './components/sections/FooterSection';
+import { CustomCursor } from './components/ui/CustomCursor';
 
 export function App() {
   const { theme, toggleTheme, isDark } = useTheme();
@@ -50,6 +51,9 @@ export function App() {
 
   return (
     <div className="relative min-h-screen bg-[var(--background-primary)] text-[var(--text-primary)] transition-colors duration-300 font-sans selection:bg-[#00d8ff]/20 selection:text-[#00d8ff]">
+      {/* Precision CAD Custom Cursor for Desktop */}
+      <CustomCursor />
+
       {/* 1. Deep 3D Cosmic Starfield from dungyov.com (drifts with 3D parallax & scroll warp) */}
       <CosmicStarfield isDark={isDark} />
 
