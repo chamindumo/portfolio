@@ -14,12 +14,12 @@ export const profileData: ProfileData = {
   timezone: "UTC+5:30",
   email: "janithramoramudali@gmail.com",
   studentEmail: "janithramoramudali@gmail.com",
-  university: "IIT (Informatics Institute of Technology) / University of Westminster",
-  degree: "BEng (Hons) in Software Engineering",
+  university: "IIT / University of Westminster (UK)",
+  degree: "BEng (Hons) Software Engineering | MSc in Cyber Security & Digital Forensics (Reading)",
   bioParagraphs: [
     "Hello! 👋 I'm Chamindu, a software engineer from Sri Lanka specializing in frontend web engineering with React, cross-platform mobile application development with React Native, and deep learning forensics with Cybervali.",
     "For all web frontend systems, I architect high-velocity, component-driven interfaces using React and TypeScript. For mobile experiences, I build native-grade, fluid iOS and Android applications with React Native and Expo. In parallel, I research forensic steganography detection using Multi-Task & Transfer Learning and construct enterprise automation with n8n.",
-    "Graduated with BEng (Hons) in Software Engineering from Informatics Institute of Technology (IIT) in partnership with the University of Westminster (UK), designing and shipping production software for modern teams globally."
+    "Having graduated with a BEng (Hons) in Software Engineering from Informatics Institute of Technology (IIT) in partnership with the University of Westminster (UK), I am currently pursuing my Master's (MSc) in Cyber Security & Digital Forensics, fusing software engineering with advanced forensic intelligence."
   ],
   socials: [
     {

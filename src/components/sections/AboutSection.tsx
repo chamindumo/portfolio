@@ -75,7 +75,7 @@ export const AboutSection: React.FC = () => {
                   {/* Bottom Image Overlay Tag */}
                   <div className="absolute bottom-0 inset-x-0 bg-[var(--background-primary)]/85 backdrop-blur-sm border-t border-[var(--border-secondary)] px-3 py-1.5 font-mono text-[11px] text-[var(--text-secondary)] flex items-center justify-between">
                     <span className="font-semibold text-[var(--text-primary)]">{profileData.name}</span>
-                    <span className="text-[10px] text-[var(--accent-primary)] font-bold">IIT // WESTMINSTER BEng</span>
+                    <span className="text-[10px] text-[var(--accent-primary)] font-bold">MSc CYBER SECURITY &amp; FORENSICS</span>
                   </div>
                 </div>
 
@@ -253,24 +253,46 @@ export const AboutSection: React.FC = () => {
                   <span>// ENGINEERING TIMELINE</span>
                 </div>
 
-                <div className="space-y-4 border-l border-[var(--border-primary)] ml-2 pl-4 font-mono text-xs">
-                  <div>
-                    <div className="text-[var(--accent-primary)] font-bold">2022 — PRESENT</div>
-                    <div className="font-sans font-bold text-sm text-[var(--text-primary)]">
-                      BSc (Hons) Computer Science / Software Engineering // IIT &amp; University of Westminster
+                <div className="space-y-5 border-l border-[var(--border-primary)] ml-2 pl-4 font-mono text-xs">
+                  {/* Master's Degree (Current / In Progress) */}
+                  <div className="relative">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse -ml-[21px]" />
+                      <span className="text-emerald-400 font-bold tracking-wider text-[11px]">2024 — PRESENT // READING</span>
                     </div>
-                    <p className="text-[var(--text-tertiary)] font-sans text-xs mt-1">
-                      Informatics Institute of Technology (IIT) Sri Lanka in partnership with the University of Westminster (UK). Specializing in software architecture, algorithms, and distributed systems.
+                    <div className="font-sans font-bold text-sm text-[var(--text-primary)] mt-1">
+                      MSc in Cyber Security &amp; Digital Forensics
+                    </div>
+                    <p className="text-[var(--text-tertiary)] font-sans text-xs mt-1 leading-relaxed">
+                      Advanced post-graduate specialization in digital media forensics, steganography payload detection, Multi-Task &amp; Transfer Learning for cyber defense (Cybervali), and cryptographic vulnerability analysis.
                     </p>
                   </div>
 
-                  <div>
-                    <div className="text-[var(--accent-primary)] font-bold">2023 — PRESENT</div>
-                    <div className="font-sans font-bold text-sm text-[var(--text-primary)]">
-                      Full-Stack Software Engineer &amp; Consultant
+                  {/* Bachelor's Degree (Completed / Graduated) */}
+                  <div className="relative">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[var(--accent-primary)] -ml-[21px]" />
+                      <span className="text-[var(--accent-primary)] font-bold tracking-wider text-[11px]">GRADUATED // COMPLETED</span>
                     </div>
-                    <p className="text-[var(--text-tertiary)] font-sans text-xs mt-1">
-                      Delivering custom high-performance web products, AI integrations, and headless systems for modern teams.
+                    <div className="font-sans font-bold text-sm text-[var(--text-primary)] mt-1">
+                      BEng (Hons) in Software Engineering // IIT &amp; University of Westminster (UK)
+                    </div>
+                    <p className="text-[var(--text-tertiary)] font-sans text-xs mt-1 leading-relaxed">
+                      Informatics Institute of Technology (IIT) Sri Lanka in partnership with the University of Westminster (UK). Core foundations in software architecture, distributed systems, algorithms, and full-stack engineering.
+                    </p>
+                  </div>
+
+                  {/* Professional Experience */}
+                  <div className="relative">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[var(--text-quaternary)] -ml-[21px]" />
+                      <span className="text-[var(--text-quaternary)] font-bold tracking-wider text-[11px]">2023 — PRESENT</span>
+                    </div>
+                    <div className="font-sans font-bold text-sm text-[var(--text-primary)] mt-1">
+                      Software Engineer // React, React Native &amp; Automation
+                    </div>
+                    <p className="text-[var(--text-tertiary)] font-sans text-xs mt-1 leading-relaxed">
+                      Engineering production web applications with React &amp; TypeScript, cross-platform mobile apps with React Native, and autonomous enterprise webhook pipelines using n8n.
                     </p>
                   </div>
                 </div>
