@@ -37,13 +37,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isDark }) => {
                 }}
               />
             </div>
-            <div className="flex flex-col gap-1">
-              <div className="flex items-center gap-2 font-mono text-xs text-[var(--accent-primary)] font-bold tracking-widest">
-                <span>01 . </span>
-                <span>SOFTWARE ENGINEER // REACT, REACT NATIVE &amp; AI FORENSICS</span>
+            <div className="flex flex-col gap-1.5">
+              <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
+                <span className="px-1.5 py-0.5 border border-[var(--accent-primary)]/40 bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] text-[10px] font-bold tracking-wider">
+                  01 // DISCIPLINE
+                </span>
+                <span className="text-[var(--text-primary)] font-bold tracking-wider text-xs">
+                  SOFTWARE ENGINEER &amp; FORENSIC RESEARCHER
+                </span>
               </div>
-              <p className="font-mono text-xs text-[var(--text-tertiary)] max-w-md">
-                {profileData.tagline}
+              <p className="font-mono text-xs text-[var(--text-tertiary)] max-w-lg leading-relaxed">
+                Building scalable <strong className="text-[var(--text-primary)] font-semibold">React</strong> frontend architectures, cross-platform <strong className="text-[var(--text-primary)] font-semibold">React Native</strong> mobile applications, and neural steganography forensics (<strong className="text-[var(--accent-primary)] font-semibold">Cybervali</strong>).
               </p>
             </div>
           </div>

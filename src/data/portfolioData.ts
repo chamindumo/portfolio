@@ -7,7 +7,7 @@ export const profileData: ProfileData = {
   avatarUrl: "/chamindu.jpg",
   title: "Software Engineer // React, React Native & AI Forensics",
   roleDescription: "Engineering modern React frontend architectures, cross-platform React Native mobile applications, autonomous n8n workflows, and deep learning steganography detection (Cybervali).",
-  tagline: "React frontend engineering, React Native mobile apps, and AI forensics (Cybervali).",
+  tagline: "Building scalable React frontend architectures, cross-platform React Native mobile applications, and neural steganography forensics (Cybervali).",
   availability: "AVAILABLE FOR COMMISSIONS & FULL-TIME ROLES",
   location: "Colombo, Sri Lanka",
   coordinates: "6.9271° N, 79.8612° E",
