@@ -54,15 +54,14 @@ export const AboutSection: React.FC = () => {
                 </div>
 
                 {/* Image Frame with Corner CAD brackets and scanline effect */}
-                <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full overflow-hidden border border-[var(--border-primary)] bg-[var(--background-tertiary)]">
+                <div className="relative aspect-[4/4.5] sm:aspect-[4/4] w-full overflow-hidden border border-[var(--border-primary)] bg-[var(--background-tertiary)] group">
                   <CornerBracket size={6} />
                   
                   <img
                     src={profileData.avatarUrl}
                     alt={profileData.name}
-                    className="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover object-[center_20%] transition-all duration-500 group-hover:scale-105"
                     onError={(e) => {
-                      // Fallback to GitHub avatar URL if local path fails
                       (e.target as HTMLImageElement).src = 'https://avatars.githubusercontent.com/u/101978359?v=4';
                     }}
                   />
@@ -76,7 +75,7 @@ export const AboutSection: React.FC = () => {
                   {/* Bottom Image Overlay Tag */}
                   <div className="absolute bottom-0 inset-x-0 bg-[var(--background-primary)]/85 backdrop-blur-sm border-t border-[var(--border-secondary)] px-3 py-1.5 font-mono text-[11px] text-[var(--text-secondary)] flex items-center justify-between">
                     <span className="font-semibold text-[var(--text-primary)]">{profileData.name}</span>
-                    <span className="text-[10px] text-[var(--accent-primary)]">IIT // WESTMINSTER CS</span>
+                    <span className="text-[10px] text-[var(--accent-primary)] font-bold">IIT // WESTMINSTER BEng</span>
                   </div>
                 </div>
 
