@@ -39,23 +39,23 @@ export const RealSpaceRocket: React.FC<RealSpaceRocketProps> = ({ isDark = true 
     renderer.toneMappingExposure = 1.15;
     container.appendChild(renderer.domElement);
 
-    // 2. Studio Space Lighting
-    const ambientLight = new THREE.AmbientLight(isDark ? 0x242832 : 0xe2e8f0, isDark ? 1.4 : 1.6);
+    // 2. Studio Space Lighting (Tuned for deep contrast in both Light & Dark modes)
+    const ambientLight = new THREE.AmbientLight(isDark ? 0x242832 : 0x94a3b8, isDark ? 1.4 : 1.35);
     scene.add(ambientLight);
 
-    // Main Sunlight (Crisp directional light with soft shadows)
-    const sunLight = new THREE.DirectionalLight(0xffffff, isDark ? 3.2 : 2.8);
+    // Main Sunlight (Crisp directional light with defined metallic shading)
+    const sunLight = new THREE.DirectionalLight(0xffffff, isDark ? 3.2 : 3.6);
     sunLight.position.set(6, 10, 8);
     sunLight.castShadow = true;
     scene.add(sunLight);
 
-    // Cyan / Cobalt Rim Light (Accents the aerospace silhouette)
-    const cyanRim = new THREE.DirectionalLight(isDark ? 0x00d8ff : 0x0284c7, isDark ? 2.4 : 2.2);
+    // Cyan / Azure Rim Light (Accents the aerospace booster silhouette)
+    const cyanRim = new THREE.DirectionalLight(isDark ? 0x00d8ff : 0x0284c7, isDark ? 2.4 : 3.2);
     cyanRim.position.set(-8, 2, -4);
     scene.add(cyanRim);
 
     // Engine Exhaust Backlight
-    const engineGlow = new THREE.PointLight(isDark ? 0x00e5ff : 0x0284c7, isDark ? 3.5 : 2.5, 10);
+    const engineGlow = new THREE.PointLight(isDark ? 0x00e5ff : 0x0284c7, 3.5, 10);
     engineGlow.position.set(0, -2.6, 0);
     scene.add(engineGlow);
 
@@ -66,13 +66,13 @@ export const RealSpaceRocket: React.FC<RealSpaceRocketProps> = ({ isDark = true 
     textureCanvas.height = 1024;
     const ctx = textureCanvas.getContext('2d');
     if (ctx) {
-      // Base aerospace enamel (light gray-white with high definition)
-      ctx.fillStyle = isDark ? '#f8fafc' : '#f1f5f9';
+      // Base aerospace white enamel
+      ctx.fillStyle = '#f8fafc';
       ctx.fillRect(0, 0, 1024, 1024);
 
-      // Technical panel seams & weld lines (high contrast in light mode)
-      ctx.strokeStyle = isDark ? '#cbd5e1' : '#94a3b8';
-      ctx.lineWidth = isDark ? 2 : 3;
+      // Technical panel seams & weld lines
+      ctx.strokeStyle = '#cbd5e1';
+      ctx.lineWidth = 2;
       for (let y = 100; y < 1024; y += 140) {
         ctx.beginPath();
         ctx.moveTo(0, y);
@@ -119,7 +119,7 @@ export const RealSpaceRocket: React.FC<RealSpaceRocketProps> = ({ isDark = true 
       renderLogo(256, 700);
       renderLogo(768, 700);
 
-      // Flag & mission patch
+      // USA / NASA style flag & mission patch
       ctx.fillStyle = '#0284c7';
       ctx.fillRect(492, 220, 40, 24);
       ctx.fillStyle = '#ffffff';
@@ -132,8 +132,8 @@ export const RealSpaceRocket: React.FC<RealSpaceRocketProps> = ({ isDark = true 
     // Materials
     const hullMaterial = new THREE.MeshStandardMaterial({
       map: rocketTexture,
-      roughness: isDark ? 0.22 : 0.32,
-      metalness: isDark ? 0.15 : 0.2,
+      roughness: 0.22,
+      metalness: 0.15,
     });
 
     const carbonMaterial = new THREE.MeshStandardMaterial({
@@ -253,25 +253,25 @@ export const RealSpaceRocket: React.FC<RealSpaceRocketProps> = ({ isDark = true 
     coreFlameGeo.translate(0, -1.1, 0);
 
     const coreFlameMat = new THREE.MeshBasicMaterial({
-      color: isDark ? 0xffffff : 0x38bdf8,
+      color: 0xffffff,
       transparent: true,
       opacity: 0.95,
-      blending: isDark ? THREE.AdditiveBlending : THREE.NormalBlending,
+      blending: THREE.AdditiveBlending,
     });
     const coreFlame = new THREE.Mesh(coreFlameGeo, coreFlameMat);
     coreFlame.position.y = -1.8;
     rocket.add(coreFlame);
 
-    // 2. Outer Electric Cyan / Cobalt Plasma Plume with Shock Diamonds
+    // 2. Outer Electric Cyan / Orange Plasma Plume with Shock Diamonds
     const outerFlameGeo = new THREE.ConeGeometry(0.55, 3.2, 32, 1, true);
     outerFlameGeo.rotateX(Math.PI);
     outerFlameGeo.translate(0, -1.6, 0);
 
     const outerFlameMat = new THREE.MeshBasicMaterial({
-      color: isDark ? 0x00d8ff : 0x0284c7,
+      color: 0x00d8ff,
       transparent: true,
-      opacity: isDark ? 0.75 : 0.85,
-      blending: isDark ? THREE.AdditiveBlending : THREE.NormalBlending,
+      opacity: 0.75,
+      blending: THREE.AdditiveBlending,
       side: THREE.DoubleSide,
     });
     const outerFlame = new THREE.Mesh(outerFlameGeo, outerFlameMat);
@@ -283,10 +283,10 @@ export const RealSpaceRocket: React.FC<RealSpaceRocketProps> = ({ isDark = true 
     for (let i = 0; i < 4; i++) {
       const diamondGeo = new THREE.OctahedronGeometry(0.12 - i * 0.02, 0);
       const diamondMat = new THREE.MeshBasicMaterial({
-        color: isDark ? 0xffffff : 0x0284c7,
+        color: 0xffffff,
         transparent: true,
-        opacity: 0.95,
-        blending: isDark ? THREE.AdditiveBlending : THREE.NormalBlending,
+        opacity: 0.9,
+        blending: THREE.AdditiveBlending,
       });
       const diamond = new THREE.Mesh(diamondGeo, diamondMat);
       diamond.position.y = -2.1 - i * 0.45;
@@ -314,11 +314,11 @@ export const RealSpaceRocket: React.FC<RealSpaceRocketProps> = ({ isDark = true 
     sparkGeo.setAttribute('position', new THREE.BufferAttribute(sparkPositions, 3));
 
     const sparkMat = new THREE.PointsMaterial({
-      color: isDark ? 0x00d8ff : 0x0284c7,
+      color: 0x00d8ff,
       size: 0.08,
       transparent: true,
-      opacity: isDark ? 0.85 : 0.9,
-      blending: isDark ? THREE.AdditiveBlending : THREE.NormalBlending,
+      opacity: 0.85,
+      blending: THREE.AdditiveBlending,
     });
     const sparks = new THREE.Points(sparkGeo, sparkMat);
     rocket.add(sparks);
@@ -463,14 +463,14 @@ export const RealSpaceRocket: React.FC<RealSpaceRocketProps> = ({ isDark = true 
       />
 
       {/* CAD Flight Telemetry Overlay */}
-      <div className="absolute inset-x-2 bottom-1 flex items-center justify-between pointer-events-none font-mono text-[10px] text-[var(--text-secondary)] px-3 py-1.5 bg-[var(--background-card)] backdrop-blur-md border border-[var(--border-primary)] shadow-sm">
+      <div className="absolute inset-x-2 bottom-1 flex items-center justify-between pointer-events-none font-mono text-[10px] text-[var(--text-tertiary)] px-3 py-1.5 bg-[var(--background-card)]/90 dark:bg-[#101217]/80 backdrop-blur-md border border-[var(--border-primary)] shadow-sm">
         <div className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] animate-ping" />
           <span className="text-[var(--accent-primary)] font-bold">{telemetry.status}</span>
         </div>
         <div className="flex items-center gap-3">
           <span>ALT: <strong className="text-[var(--text-primary)]">{telemetry.altitude}</strong></span>
-          <span>THRUST: <strong className="text-[var(--accent-primary)]">{telemetry.thrust}</strong></span>
+          <span>THRUST: <strong className="text-[var(--accent-primary)] font-bold">{telemetry.thrust}</strong></span>
           <span>MACH: <strong className="text-[var(--text-primary)]">{telemetry.mach}</strong></span>
         </div>
       </div>
