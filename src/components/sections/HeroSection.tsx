@@ -80,20 +80,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isDark }) => {
 
           {/* Real 3D Space Rocket Viewport Centerpiece */}
           <div className="relative w-[260px] sm:w-[300px] md:w-[360px] lg:w-[400px] h-[380px] sm:h-[440px] md:h-[480px] mx-2 sm:mx-4 md:mx-6 shrink-0 z-10 flex items-center justify-center pointer-events-auto">
-            {/* Subtle Blueprint Grid Crosshairs & CAD Framing */}
+            {/* Subtle Blueprint Grid Crosshairs, Drafting Rings & CAD Framing */}
             <div className="absolute inset-2 pointer-events-none">
               <CornerBracket size={8} />
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[var(--crosshair-color)] font-mono text-xs select-none">
-                +
+
+              {/* Engineering Drafting Circle Guides */}
+              <div className="absolute inset-6 rounded-full border border-[var(--border-secondary)]/60 pointer-events-none" />
+              <div className="absolute inset-16 rounded-full border border-dashed border-[var(--border-secondary)]/40 pointer-events-none" />
+
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[var(--crosshair-color)] font-mono text-[10px] select-none flex items-center gap-1">
+                <span>+</span>
+                <span className="opacity-70">090°</span>
               </div>
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 text-[var(--crosshair-color)] font-mono text-xs select-none">
-                +
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 text-[var(--crosshair-color)] font-mono text-[10px] select-none flex items-center gap-1">
+                <span>+</span>
+                <span className="opacity-70">270°</span>
               </div>
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 text-[var(--crosshair-color)] font-mono text-xs select-none">
-                +
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 text-[var(--crosshair-color)] font-mono text-[10px] select-none flex items-center gap-1">
+                <span>+</span>
+                <span className="opacity-70">180°</span>
               </div>
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 text-[var(--crosshair-color)] font-mono text-xs select-none">
-                +
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 text-[var(--crosshair-color)] font-mono text-[10px] select-none flex items-center gap-1">
+                <span>+</span>
+                <span className="opacity-70">000°</span>
               </div>
             </div>
 

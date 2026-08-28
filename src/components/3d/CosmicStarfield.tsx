@@ -17,7 +17,7 @@ export const CosmicStarfield: React.FC<CosmicStarfieldProps> = ({ isDark = true 
 
     // Scene, Camera & Renderer
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(isDark ? 0x121214 : 0xf8f9fa, 0.025);
+    scene.fog = new THREE.FogExp2(isDark ? 0x121214 : 0xf8fafc, isDark ? 0.025 : 0.018);
 
     const camera = new THREE.PerspectiveCamera(55, width / height, 0.1, 80);
     camera.position.z = 10;
@@ -47,9 +47,9 @@ export const CosmicStarfield: React.FC<CosmicStarfieldProps> = ({ isDark = true 
 
     const starMaterial = new THREE.PointsMaterial({
       color: isDark ? 0x7dd3fc : 0x0284c7,
-      size: isDark ? 0.07 : 0.06,
+      size: isDark ? 0.07 : 0.09,
       transparent: true,
-      opacity: isDark ? 0.65 : 0.45,
+      opacity: isDark ? 0.65 : 0.65,
       blending: isDark ? THREE.AdditiveBlending : THREE.NormalBlending,
     });
 

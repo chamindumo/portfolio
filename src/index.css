@@ -39,26 +39,26 @@ html {
   --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
 }
 
-/* Architectural Light Theme */
+/* Architectural Light Theme (High-Detail Aerospace Blueprint Draft) */
 [data-theme="light"] {
-  --background-primary: #f8f9fa;
-  --background-secondary: rgba(0, 0, 0, 0.035);
-  --background-tertiary: #eaecef;
-  --background-card: rgba(255, 255, 255, 0.9);
-  --background-inverse: #121214;
-  --text-primary: #18181b;
-  --text-secondary: #27272a;
-  --text-tertiary: #52525b;
-  --text-quaternary: #71717a;
-  --text-inverse: #fafafa;
-  --border-primary: #d4d4d8;
-  --border-secondary: #e4e4e7;
+  --background-primary: #f8fafc;
+  --background-secondary: rgba(2, 132, 199, 0.05);
+  --background-tertiary: #f1f5f9;
+  --background-card: rgba(255, 255, 255, 0.95);
+  --background-inverse: #0f172a;
+  --text-primary: #0f172a;
+  --text-secondary: #1e293b;
+  --text-tertiary: #475569;
+  --text-quaternary: #64748b;
+  --text-inverse: #f8fafc;
+  --border-primary: #cbd5e1;
+  --border-secondary: #e2e8f0;
   --accent-primary: #0284c7;
   --accent-hover: #0369a1;
-  --grid-line-color: rgba(0, 0, 0, 0.075);
-  --crosshair-color: rgba(0, 0, 0, 0.22);
+  --grid-line-color: rgba(15, 23, 42, 0.08);
+  --crosshair-color: rgba(2, 132, 199, 0.35);
   --corner-color: #0284c7;
-  --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
+  --shadow-subtle: 0 4px 20px -2px rgba(15, 23, 42, 0.07);
 }
 
 /* Background Blueprint Grid */
@@ -67,6 +67,18 @@ html {
   background-image: 
     linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
+}
+
+/* Dual-density engineering blueprint draft pattern in Light Mode */
+[data-theme="light"] .blueprint-grid-bg {
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(2, 132, 199, 0.18) 1.5px, transparent 0),
+    linear-gradient(to right, rgba(15, 23, 42, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.08) 1px, transparent 1px);
+  background-size: 
+    calc(var(--grid-block-size) / 2) calc(var(--grid-block-size) / 2),
+    var(--grid-block-size) var(--grid-block-size),
+    var(--grid-block-size) var(--grid-block-size);
 }
 
 /* Precision CAD Corner Brackets */
