@@ -31,7 +31,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isDark }) => {
               <img
                 src={profileData.avatarUrl}
                 alt={profileData.name}
-                className="w-9 h-9 object-cover grayscale hover:grayscale-0 transition-all duration-300"
+                className="w-9 h-9 object-cover transition-all duration-300"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = 'https://avatars.githubusercontent.com/u/101978359?v=4';
                 }}

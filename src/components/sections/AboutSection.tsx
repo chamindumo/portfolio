@@ -60,7 +60,7 @@ export const AboutSection: React.FC = () => {
                   <img
                     src={profileData.avatarUrl}
                     alt={profileData.name}
-                    className="w-full h-full object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
                     onError={(e) => {
                       // Fallback to GitHub avatar URL if local path fails
                       (e.target as HTMLImageElement).src = 'https://avatars.githubusercontent.com/u/101978359?v=4';
