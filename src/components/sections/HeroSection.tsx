@@ -79,7 +79,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isDark }) => {
           </div>
 
           {/* Real 3D Space Rocket Viewport Centerpiece */}
-          <div className="relative w-[260px] sm:w-[300px] md:w-[360px] lg:w-[400px] h-[380px] sm:h-[440px] md:h-[480px] mx-2 sm:mx-4 md:mx-6 shrink-0 z-10 flex items-center justify-center pointer-events-auto">
+          <div className="relative w-[280px] sm:w-[320px] md:w-[380px] lg:w-[420px] h-[430px] sm:h-[490px] md:h-[530px] mx-2 sm:mx-4 md:mx-6 shrink-0 z-10 flex items-center justify-center pointer-events-auto">
             {/* Subtle Blueprint Grid Crosshairs & Architectural Glass Framing */}
             <div className="absolute inset-1 pointer-events-none bg-[var(--background-secondary)]/70 dark:bg-white/[0.02] border border-[var(--border-primary)]/70 backdrop-blur-xs shadow-[0_8px_30px_rgba(2,132,199,0.06)] dark:shadow-none transition-all">
               <CornerBracket size={8} />

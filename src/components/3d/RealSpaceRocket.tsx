@@ -23,8 +23,8 @@ export const RealSpaceRocket: React.FC<RealSpaceRocketProps> = ({ isDark = true 
 
     // 1. Scene, Camera, Fog & Renderer
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
-    camera.position.set(0, 0.4, 7.5);
+    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+    camera.position.set(0, 0.1, 8.4);
 
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
@@ -158,6 +158,7 @@ export const RealSpaceRocket: React.FC<RealSpaceRocketProps> = ({ isDark = true 
 
     // 4. Assemble the Real Rocket Model (Falcon 9 / Starship Proportions)
     const rocket = new THREE.Group();
+    rocket.scale.set(0.74, 0.74, 0.74);
     scene.add(rocket);
 
     // A. Booster Stage (Main Tall Cylindrical Hull)
@@ -376,10 +377,10 @@ export const RealSpaceRocket: React.FC<RealSpaceRocketProps> = ({ isDark = true 
 
       // Rocket Flight Pose:
       // Hovering bob + smooth mouse pitch/yaw + scroll climb
-      const hoverY = Math.sin(time * 2.2) * 0.08;
+      const hoverY = Math.sin(time * 2.2) * 0.06;
       const hoverRoll = Math.cos(time * 1.8) * 0.03;
 
-      rocket.position.y = hoverY - Math.min(currentScrollY * 0.0012, 1.2);
+      rocket.position.y = -0.38 + hoverY - Math.min(currentScrollY * 0.001, 0.8);
       rocket.position.x = Math.sin(time * 1.2) * 0.04;
       rocket.position.z = Math.min(scrollVelocity * 0.35, 1.0); // Leaps forward when scrolling!
 
@@ -459,7 +460,7 @@ export const RealSpaceRocket: React.FC<RealSpaceRocketProps> = ({ isDark = true 
       {/* 3D WebGL Canvas for the Real Space Rocket */}
       <div
         ref={mountRef}
-        className="w-full h-full min-h-[380px] sm:min-h-[440px] flex items-center justify-center cursor-grab active:cursor-grabbing"
+        className="w-full h-full min-h-[420px] sm:min-h-[480px] md:min-h-[520px] flex items-center justify-center cursor-grab active:cursor-grabbing"
       />
 
       {/* CAD Flight Telemetry Overlay */}
